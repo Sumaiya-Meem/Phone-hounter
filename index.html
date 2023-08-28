@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header>
+        <div class="navbar bg-base-100 flex">
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-2xl font-bold">Phone Hounter</a>
+            </div>
+            <div class="flex-1 justify-end gap-2">
+              <!-- <div class="form-control"> -->
+                <input type="text" id="search-input" placeholder="Search..." class="input input-bordered w-16 md:w-auto" />
+                <button class="btn btn-primary text-white font-bold capitalize text-base" onclick="searchHandler()">Search</button>
+              <!-- </div> -->
+            </div>
+          </div>
+    </header>
+    <main class="container mx-auto mt-8 p-4">
+       <section>
+        <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        </div>
+        <!-- show all phone -->
+        <div class="hidden mt-6" id="showAll-container">
+            <button class="btn btn-success text-white font-bold capitalize text-base">Show All</button>
+        </div>
+       
+       </section>
+    </main>
+    <script src="phone.js"></script>
+</body>
+
+</html>
