@@ -37,8 +37,8 @@ const displayPhones = (phones,isShowAll) => {
         <div class="card-body">
          <h2 class="card-title">${phone.phone_name}</h2>
          <p>If a dog chews shoes whose shoes does he choose?</p>
-         <div class="card-actions justify-end">
-           <button class="btn btn-primary">Buy Now</button>
+         <div class="card-actions justify-center">
+           <button class="btn btn-primary" onclick="showDetails('${phone.slug}')">Show Details</button>
          </div>
         </div>
         `
@@ -70,6 +70,37 @@ const loadHandler=(isLoading) =>{
 // function for show all phone
 const handleShowAll = () =>{
     searchHandler(true);
+}
+// handle show details to load data
+const showDetails = async (id) => {
+  const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+  const data = await res.json();
+//   console.log(data);
+  const phone =data.data;
+
+  showPhoneDetails(phone);
+}
+// function for show all phone details
+const showPhoneDetails = (phone) => {
+    console.log(phone);
+    
+    const showDetailContainer=document.getElementById('show_detail_container');
+    showDetailContainer.innerHTML=`
+    <div class="flex justify-center bg-gray-100 mb-4"><img src="${phone.image}" alt="image" class="m-2"></div>
+    <p class="font-bold text-2xl mb-2">${phone.name}</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Isaem, ab lorem ipsum dolor sit amet </p>
+    <p><span class="font-bold text-base">Storage:</span> ${phone?.mainFeatures?.storage}</p>
+    <p><span class="font-bold text-base">Display Size:</span> ${phone?.mainFeatures?.displaySize}</p>
+    <p><span class="font-bold text-base">ChipSet:</span> ${phone?.mainFeatures?.chipSet}</p>
+    <p><span class="font-bold text-base">Memory:</span> ${phone?.mainFeatures?.memory? phone.mainFeatures.memory : ""}</p>
+    <p><span class="font-bold text-base">Slug:</span> ${phone?.slug}</p>
+    <p><span class="font-bold text-base">Release Date:</span> ${phone?.releaseDate}</p>
+    <p><span class="font-bold text-base">Brand:</span> ${phone?.brand}</p>
+    <p><span class="font-bold text-base">GPS:</span> ${phone?.others?.GPS ? phone.others.GPS : ""}</p> 
+
+    `
+    show_details_modal.showModal();
+    
 }
 
 // loadPhone();
